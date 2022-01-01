@@ -1,0 +1,35 @@
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: rgb(226, 226, 226);
+}
+/* ******************** Common Style ******************* */
+.box-shadow-style, a {
+  box-shadow: 1px 1px gray, -1px -1px white;
+  border-radius: 15px;
+  margin: 5px;
+  padding: 5px;
+}
+.box-shadow-style:hover, a:hover {
+  box-shadow: 1px 1px white, -1px -1px gray;
+  color: rgb(255, 23, 23) !important;
+}
+
+img{
+  width: 100%;
+  padding: 5px;
+  border-radius: 20px;
+}
+
+/* ******************** home section ******************* */
+
+/* ******************** Latest Meals ******************* */
+/* #popular-ingredients{
+  margin-top:
+} */
+
+
+/* ******************** footer ******************* */
+ul a{
+  text-decoration: none;
+  color: gray;
+}
