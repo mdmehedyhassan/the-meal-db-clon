@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/all.css">
 </head>
@@ -29,12 +30,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ms-auto text-center">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        <a class="nav-link">API</a>
-                        <a class="nav-link" href="#">Forum</a>
+                        <a class="nav-link active" aria-current="page" href="#" onclick="location.reload()">Home</a>
+                        <a onclick="displayNoneBlock('api-section-display')" class="nav-link">API</a>
+                        <a onclick="allCategories()" class="nav-link" href="#">Categories</a>
+                        <a onclick="allCountries()" class="nav-link" href="#">Countries</a>
+                        <a onclick="allIngredients()" class="nav-link" href="#">Ingredients</a>
                         <a class="nav-link" href="#"><i class="fab fa-facebook"></i></a>
                         <a class="nav-link" href="#"><i class="fab fa-linkedin"></i></a>
-                        <input class="form-control" type="text" placeholder="Search">
                     </div>
                 </div>
             </div>
@@ -43,156 +45,310 @@
 
     <main>
         <!-- ========================= Home section ======================= -->
-        <section id="home-section">
-            <!-- ======================= home Header ==================== -->
-            <article class="d-flex justify-content-between align-items-center mt-5 mb-5">
-                <div class="col-2">
-                    <img class="w-100" src="images/meal-icon.png" alt="">
-                </div>
-                <div class="col-8 text-center">
-                    <h2>Welcome to TheMealDB</h2>
-                    <p>Welcome to TheMealDB: An open, crowd-sourced database of Recipes from around the world.</p>
-                    <p>We also offer a <a href="">free JSON API</a> for anyone wanting to use it.</p>
-                    <p>If you like the site, please consider supporting us on Patreon by clicking the link below...</p>
-                    <img class="w-25 m-3" src="images/patreon_logo.png" alt=""><br>
-                    <a href="">Click to Support: Currently 650 supporters</a>
-                </div>
-                <div class="col-2">
-                    <img class="w-100" src="images/meal-icon.png" alt="">
-                </div>
-            </article>
+        <div id="home-section-display">
+            <section id="home-section">
+                <!-- ======================= home Header ==================== -->
+                <article class="d-flex justify-content-between align-items-center mt-5 mb-5">
+                    <div class="col-2">
+                        <img class="w-100" src="images/meal-icon.png" alt="">
+                    </div>
+                    <div class="col-8 text-center">
+                        <h2>Welcome to TheMealDB</h2>
+                        <p>Welcome to TheMealDB: An open, crowd-sourced database of Recipes from around the world.</p>
+                        <p>We also offer a <a href="">free JSON API</a> for anyone wanting to use it.</p>
+                        <p>If you like the site, please consider supporting us on Patreon by clicking the link below...
+                        </p>
+                        <img class="w-25 m-3" src="images/patreon_logo.png" alt=""><br>
+                        <a href="">Click to Support: Currently 650 supporters</a>
+                    </div>
+                    <div class="col-2">
+                        <img class="w-100" src="images/meal-icon.png" alt="">
+                    </div>
+                </article>
 
-            <!-- ======================= home searching ==================== -->
-            <article class="mt-5 mb-5  border-top border-bottom border-dark">
-                <div class="mt-3 mb-3">
-                    <div class="row">
-                        <div class="col-3"></div>
-                        <div class="col-md-6">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Search for a Meal..."
-                                    aria-label="Recipient's username" aria-describedby="button-addon2">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
-                                        class="fas fa-search"></i></button>
+                <!-- ======================= home searching ==================== -->
+                <article class="mt-5 mb-5  border-top border-5 border-bottom border-info">
+                    <div class="mt-3 mb-3">
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <input id="search-input" type="text" class="form-control"
+                                        placeholder="Search for a Meal..." aria-label="Recipient's username"
+                                        aria-describedby="button-addon2">
+                                    <button onclick="searchHandler()" class="btn btn-outline-secondary" type="button"
+                                        id="button-addon2"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                            <div class="col-3"></div>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <p class="m-2"><i class="fas fa-utensils"></i> Total Meals: 283</p>
+                            <p class="m-2"><i class="fas fa-drumstick-bite"></i> Total Ingredients: 574</p>
+                            <p class="m-2"><i class="fas fa-images"></i> Images: 283</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ========================= Latest Meals ======================= -->
+                <article>
+                    <h1 class="text-center">Latest Meals</h1>
+                    <div id="latest-meals" class="row mt-5 mb-5">
+
+                    </div>
+                </article>
+
+                <!-- ========================= Popular Ingredients ======================= -->
+                <article class="mt-5 mb-5 border-top border-5 border-bottom border-info">
+                    <h1 class="text-center mt-3">Popular Ingredients</h1>
+                    <div id="popular-ingredients" class="row mt-5 mb-5">
+                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
+                            <div class="box-shadow-style">
+                                <img src="https://www.themealdb.com/images/ingredients/Chicken.png" alt="">
+                                <h3 class="text-center">Chicken</h3>
                             </div>
                         </div>
-                        <div class="col-3"></div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
+                            <div class="box-shadow-style">
+                                <img src="https://www.themealdb.com/images/ingredients/Salmon.png" alt="">
+                                <h3 class="text-center">Salmon</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
+                            <div class="box-shadow-style">
+                                <img src="https://www.themealdb.com/images/ingredients/Beef.png" alt="">
+                                <h3 class="text-center">Beef</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
+                            <div class="box-shadow-style">
+                                <img src="https://www.themealdb.com/images/ingredients/Pork.png" alt="">
+                                <h3 class="text-center">Pork</h3>
+                            </div>
+                        </div>
                     </div>
+                </article>
 
-                    <div class="d-flex justify-content-center">
-                        <p class="m-2"><i class="fas fa-utensils"></i> Total Meals: 283</p>
-                        <p class="m-2"><i class="fas fa-drumstick-bite"></i> Total Ingredients: 574</p>
-                        <p class="m-2"><i class="fas fa-images"></i> Images: 283</p>
-                    </div>
-                </div>
-            </article>
+                <!-- ========================= Random Meals ======================= -->
+                <article>
+                    <h1 class="text-center">Random Meals</h1>
+                    <div id="random-meals" class="row mt-5 mb-5">
 
-            <!-- ========================= Latest Meals ======================= -->
-            <article>
-                <h1 class="text-center">Latest Meals</h1>
-                <div id="latest-meals" class="row mt-5 mb-5">
+                    </div>
+                </article>
 
-                </div>
-            </article>
+                <!-- ========================= Random Ingredients ======================= -->
+                <article class="mt-5 mb-5 border-top border-5 border-bottom border-info">
+                    <h1 class="text-center mt-3">Random Ingredients</h1>
+                    <div id="popular-ingredients" class="row mt-5 mb-5">
+                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
+                            <div class="box-shadow-style">
+                                <img src="https://www.themealdb.com/images/ingredients/Tarragon Leaves.png" alt="">
+                                <h3 class="text-center">Tarragon Leaves</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
+                            <div class="box-shadow-style">
+                                <img src="https://www.themealdb.com/images/ingredients/Canola Oil.png" alt="">
+                                <h3 class="text-center">Canola Oil</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
+                            <div class="box-shadow-style">
+                                <img src="https://www.themealdb.com/images/ingredients/Rice Vermicelli.png" alt="">
+                                <h3 class="text-center">Rice Vermicelli</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
+                            <div class="box-shadow-style">
+                                <img src="https://www.themealdb.com/images/ingredients/Whole Milk.png" alt="">
+                                <h3 class="text-center">Whole Milk</h3>
+                            </div>
+                        </div>
+                    </div>
+                </article>
 
-            <!-- ========================= Popular Ingredients ======================= -->
-            <article class="mt-5 mb-5 border-top border-bottom border-dark">
-                <h1 class="text-center mt-3">Popular Ingredients</h1>
-                <div id="popular-ingredients" class="row mt-5 mb-5">
-                    <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                        <div class="box-shadow-style"> 
-                            <img src="https://www.themealdb.com/images/ingredients/Chicken.png" alt="">
-                            <h3 class="text-center">Chicken</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                        <div class="box-shadow-style"> 
-                            <img src="https://www.themealdb.com/images/ingredients/Salmon.png" alt="">
-                            <h3 class="text-center">Salmon</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                        <div class="box-shadow-style"> 
-                            <img src="https://www.themealdb.com/images/ingredients/Beef.png" alt="">
-                            <h3 class="text-center">Beef</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                        <div class="box-shadow-style"> 
-                            <img src="https://www.themealdb.com/images/ingredients/Pork.png" alt="">
-                            <h3 class="text-center">Pork</h3>
-                        </div>
-                    </div>
-                </div>
-            </article>
+                <!-- ========================= Browse Country ======================= -->
+                <article class="mt-5 mb-5">
+                    <h1 class="text-center">Browse Country</h1>
+                    <div class="text-center browse-country" onclick="browseCountry(event)">
+                        <img src="images/country/Algerian.png" alt="Algerian">
+                        <img src="images/country/American.png" alt="American">
+                        <img src="images/country/Argentinian.png" alt="Argentinian">
+                        <img src="images/country/British.png" alt="British">
+                        <img src="images/country/Canadian.png" alt="Canadian">
+                        <img src="images/country/Chinese.png" alt="Chinese">
+                        <img src="images/country/Croatian.png" alt="Croatian">
+                        <img src="images/country/Dutch.png" alt="Dutch">
+                        <img src="images/country/Egyptian.png" alt="Egyptian">
+                        <img src="images/country/French.png" alt="French">
+                        <img src="images/country/Greek.png" alt="Greek">
+                        <img src="images/country/Indian.png" alt="Indian">
+                        <img src="images/country/Irish.png" alt="Irish">
+                        <img src="images/country/Italian.png" alt="Italian">
+                        <img src="images/country/Jamaican.png" alt="Jamaican">
+                        <img src="images/country/Japanese.png" alt="Japanese">
+                        <img src="images/country/Kenyan.png" alt="Kenyan">
+                        <img src="images/country/Malaysian.png" alt="Malaysian">
+                        <img src="images/country/Mexican.png" alt="Mexican">
+                        <img src="images/country/Moroccan.png" alt="Moroccan">
+                        <img src="images/country/Norwegian.png" alt="Norwegian">
+                        <img src="images/country/Polish.png" alt="Polish">
+                        <img src="images/country/Polish.png" alt="Polish">
+                        <img src="images/country/Portuguese.png" alt="Portuguese">
+                        <img src="images/country/Russian.png" alt="Russian">
+                        <img src="images/country/Saudi-Arabian.png" alt="Saudi Arabian">
+                        <img src="images/country/Slovakian.png" alt="Slovakian">
+                        <img src="images/country/Spanish.png" alt="Spanish">
+                        <img src="images/country/Syrian.png" alt="Syrian">
+                        <img src="images/country/Thai.png" alt="Thai">
+                        <img src="images/country/Tunisian.png" alt="Tunisian">
+                        <img src="images/country/Turkish.png" alt="Turkish">
+                        <img src="images/country/Vietnamese.png" alt="Vietnamese">
 
-            <!-- ========================= Random Meals ======================= -->
-            <article>
-                <h1 class="text-center">Random Meals</h1>
-                <div id="random-meals" class="row mt-5 mb-5">
-
-                </div>
-            </article>
-
-            <!-- ========================= Random Ingredients ======================= -->
-            <article class="mt-5 mb-5 border-top border-bottom border-dark">
-                <h1 class="text-center mt-3">Popular Ingredients</h1>
-                <div id="popular-ingredients" class="row mt-5 mb-5">
-                    <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                        <div class="box-shadow-style"> 
-                            <img src="https://www.themealdb.com/images/ingredients/Tarragon Leaves.png" alt="">
-                            <h3 class="text-center">Tarragon Leaves</h3>
-                        </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                        <div class="box-shadow-style"> 
-                            <img src="https://www.themealdb.com/images/ingredients/Canola Oil.png" alt="">
-                            <h3 class="text-center">Canola Oil</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                        <div class="box-shadow-style"> 
-                            <img src="https://www.themealdb.com/images/ingredients/Rice Vermicelli.png" alt="">
-                            <h3 class="text-center">Rice Vermicelli</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                        <div class="box-shadow-style"> 
-                            <img src="https://www.themealdb.com/images/ingredients/Whole Milk.png" alt="">
-                            <h3 class="text-center">Whole Milk</h3>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </section>
+                </article>
+            </section>
+        </div>
 
         <!-- ========================= API section ======================= -->
-        <section id="api-section">
+        <div id="api-section-display">
+            <section id="api-section" class="mt-5 mb-5 text-center">
+                <article>
+                    <h4>Support</h4>
+                    <p>The API and site will always remain free at point of access. If you love our service and want extra features you can sign up as a Patreon supporter for $2.</p>
+                    <p>You can cancel anytime. This allows us to pay for the servers and bandwidth and develop newfeatures.</p>
+                </article>
+                <article>
+                    <h4>Test API Keys</h4>
+                    <p>You can use the test API key "1" during development of your app or for educational use(see test links below) However you must apply for a key a production API key via email if releasing publicly on an appstore.</p>
+                    <p>The test key may be revoked at any time if abused.</p>
+                </article>
+                <article>
+                    <h4>API Production Key Upgrade</h4>
+                    <p>All Patreon supporters have access to the beta version of the API which allows mutiple ingredient filters.</p>
+                    <p>You also get access to adding your own meals and images. You can also list the full database rather than limited to 100 items.</p>
+                    <p>Please sign up on Patreon then email us to get the upgraded.</p>
+                </article>
+                <article>
+                    <h4>Contact</h4>
+                    <p>Email: thedatadb@gmail.com (please state if you are a Patreon Supporter)</p>
+                </article>
+                <article>
+                    <h4>API Methods using the developer test key '1' as the API key</h4>
+                </article>
 
-        </section>
+                <article>
+                    <h5>Search meal by name</h5>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata</p>
+                    <h5>List all meals by first letter</h5>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/search.php?f=a</p>
+                    <h5>Lookup full meal details by id</h5>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/lookup.php?i=52772</p>
+                    <h5>Lookup a single random meal</h5>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/random.php</p>
+                    <h5>Lookup a selection of 10 random meals (only available to $2+ Patreon supporters)</h5>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/randomselection.php</p>
+                    <h5>List all meal categories</h5>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/categories.php</p>
+                    <h5>Latest Meals (only available to $2+ Patreon supporters)</h5>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/latest.php</p>
+                    <h5>List all Categories, Area, Ingredients</h5>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/list.php?c=list</p>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/list.php?a=list</p>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/list.php?i=list</p>
+                    <h5>Filter by main ingredient</h5>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast</p>
+                    <h5>Filter by multi-ingredient (only available to $2+ Patreon supporters)</h5>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast,garlic,salt</p>
+                    <h5>Filter by Category</h5>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/filter.php?c=Seafood</p>
+                    <h5>Filter by Area</h5>
+                   <p class="text-danger">www.themealdb.com/api/json/v1/1/filter.php?a=Canadian</p>
+                    <h5>Images</h5>
+                    <h5>Meal Thumbnail Images</h5>
+                    <h5>Add /preview to the end of the meal image URL</h5>
+                   <p class="text-danger">/images/media/meals/llcbn01574260722.jpg/preview</p>
+                    <h5>Ingredient Thumbnail Images</h5>
+                   <p class="text-danger">www.themealdb.com/images/ingredients/Lime.png</p>
+                   <p class="text-danger">www.themealdb.com/images/ingredients/Lime-Small.png</p>
+                </article>
+            </section>
+        </div>
+
+        <!-- ========================= Categories section ======================= -->
+        <div id="categories-display">
+            <section id="categories" class="mt-5 mb-5 row">
+
+            </section>
+        </div>
+
+        <!-- ========================= Countries section ======================= -->
+        <div id="countries-display">
+            <section id="countries" class="mt-5 mb-5 row">
+
+            </section>
+        </div>
+
+        <!-- ========================= Ingredients section======================= -->
+        <div id="ingredients-display">
+            <section id="ingredients" class="mt-5 mb-5 row">
+
+            </section>
+        </div>
+
+        <!-- ========================= Meals searching ======================= -->
+        <div id="meals-searching-display">
+            <section id="meals-searching" class="row">
+
+            </section>
+        </div>
 
         <!-- ========================= Meal details ======================= -->
-        <section id="meal-details" class="row">
+        <div id="meal-details-display">
+            <section id="meal-details" class="row">
 
-        </section>
+            </section>
+        </div>
     </main>
 
+
+    </div>
     <!-- ========================= footer ======================= -->
-    <footer class="row">
-        <div class="col-md-4 text-center">
-            <p>© 2022 TheMealDB</p>
-            <p>Proudly built in the Bangladesh</p>
-        </div>
-        <div class="col-md-4 text-center">
-            <img src="images/logo.png" alt=""><br>
-            <img src="images/logo-tsdb.png" alt="">
-        </div>
-        <div class="col-md-4 text-center mt-3">
-            <ul>
-                <a href="">About</a>
-                <a href="">Faq</a>
-                <a href="">Contact</a>
-            </ul>
-        </div>
+    <footer>
+        <!-- ========================= Browse By Name ======================= -->
+        <article class="mt-5 mb-5">
+            <h1 class="text-center">Browse By Name</h1>
+            <div>
+                <h2 onclick="browseByName(event)" class="alphabet-link">
+                    <span>A</span> <span>B</span> <span>C</span> <span>D</span>
+                    <span>E</span> <span>F</span> <span>G</span> <span>H</span>
+                    <span>I</span> <span>J</span> <span>K</span> <span>L</span>
+                    <span>M</span> <span>N</span> <span>O</span> <span>P</span>
+                    <span>Q</span> <span>R</span> <span>S</span> <span>T</span>
+                    <span>U</span> <span>R</span> <span>W</span> <span>X</span>
+                    <span>Y</span> <span>Z</span>
+                </h2>
+            </div>
+        </article>
+        <article class="row mt-5 mb-5">
+            <div class="col-md-4 text-center">
+                <p>© 2022 TheMealDB</p>
+                <p>Proudly built in the Bangladesh</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <img src="images/logo.png" alt=""><br>
+                <img src="images/logo-tsdb.png" alt="">
+            </div>
+            <div class="col-md-4 text-center mt-3">
+                <ul>
+                    <a href="">About</a>
+                    <a href="">Faq</a>
+                    <a href="">Contact</a>
+                </ul>
+            </div>
+        </article>
     </footer>
 
     <script src="js/script.js"></script>

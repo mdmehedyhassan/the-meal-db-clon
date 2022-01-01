@@ -3,14 +3,15 @@ body{
   background-color: rgb(226, 226, 226);
 }
 /* ******************** Common Style ******************* */
-.box-shadow-style, a {
-  box-shadow: 1px 1px gray, -1px -1px white;
+.box-shadow-style, a, .alphabet-link span , .browse-country img{
+  box-shadow: 1px 1px black, -1px -1px white;
   border-radius: 15px;
   margin: 5px;
   padding: 5px;
+  cursor: pointer; 
 }
-.box-shadow-style:hover, a:hover {
-  box-shadow: 1px 1px white, -1px -1px gray;
+.box-shadow-style:hover, a:hover, .alphabet-link span:hover, .browse-country img:hover {
+  box-shadow: 1px 1px white, -1px -1px black;
   color: rgb(255, 23, 23) !important;
 }
 
@@ -20,16 +21,25 @@ img{
   border-radius: 20px;
 }
 
+.alphabet-link span{
+  padding: 0 10px;
+  border-radius: 50%;
+}
+.browse-country img{
+  width: 120px;
+}
+
 /* ******************** home section ******************* */
 
-/* ******************** Latest Meals ******************* */
-/* #popular-ingredients{
-  margin-top:
-} */
-
+/* ******************** api section ******************* */
+#api-section-display{
+  display: none;
+}
+#api-section article{
+  margin: 20px 10px;
+}
 
 /* ******************** footer ******************* */
 ul a{
   text-decoration: none;
-  color: gray;
 }
