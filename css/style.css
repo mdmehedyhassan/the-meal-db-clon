@@ -22,6 +22,11 @@ body{
   color: rgb(255, 23, 23) !important;
 }
 
+.box-shadow-style:active, a:active, .alphabet-link span:active , .browse-country img:active{
+  background-color: #fac745;
+  color: #545422 !important;
+}
+
 img{
   width: 100%;
   padding: 5px;

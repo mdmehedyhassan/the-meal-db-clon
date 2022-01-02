@@ -92,6 +92,7 @@ function mealDetails(meal) {
             <h2 class="m-3 text-info">${meal.strMeal}</h2>
             <h5><span style="font-size:12px">Category:</span> <span onclick="categoryCountryIngredientToSearch('https://www.themealdb.com/api/json/v1/1/filter.php?c=${meal.strCategory}')" class="box-shadow-style p-1">${meal.strCategory}</span> </h5>
             <h5 class="mt-3"><span style="font-size:12px">Made by:</span> <span onclick="categoryCountryIngredientToSearch('https://www.themealdb.com/api/json/v1/1/filter.php?a=${meal.strArea}')" class="box-shadow-style p-1">${meal.strArea}</span> </h5>
+            <a class="nav-link" href="${meal.strYoutube}" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> Watching on YouTube</a>
             <p style="text-align:justify">${meal.strInstructions}</p>
         </div>
         <div class="col-md-8">
