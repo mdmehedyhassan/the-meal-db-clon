@@ -22,7 +22,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="images/logo.png" alt=""></a>
+                <a onclick="location.reload()" class="navbar-brand" href="#"><img src="images/logo.png" alt=""></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -30,18 +30,21 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ms-auto text-center">
-                        <a class="nav-link active" aria-current="page" href="#" onclick="location.reload()">Home</a>
+                        <a onclick="displayNoneBlock('home-section-display')" class="nav-link active" aria-current="page" href="#">Home</a>
                         <a onclick="displayNoneBlock('api-section-display')" class="nav-link">API</a>
                         <a onclick="allCategories()" class="nav-link" href="#">Categories</a>
                         <a onclick="allCountries()" class="nav-link" href="#">Countries</a>
                         <a onclick="allIngredients()" class="nav-link" href="#">Ingredients</a>
-                        <a class="nav-link" href="#"><i class="fab fa-facebook"></i></a>
-                        <a class="nav-link" href="#"><i class="fab fa-linkedin"></i></a>
+                        <a onclick="document.body.classList.toggle('darkTheme')" class="nav-link" href="#"><i class="fas fa-adjust"></i></a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
+
+    <div id="sorry-display">
+        <h1 class="text-center text-info">Sorry we Does Not give you any Support.</h1>
+    </div>
 
     <main>
         <!-- ========================= Home section ======================= -->
@@ -55,11 +58,11 @@
                     <div class="col-8 text-center">
                         <h2>Welcome to TheMealDB</h2>
                         <p>Welcome to TheMealDB: An open, crowd-sourced database of Recipes from around the world.</p>
-                        <p>We also offer a <a href="">free JSON API</a> for anyone wanting to use it.</p>
+                        <p>We also offer a <a onclick="displayNoneBlock('api-section-display')" href="#">free JSON API</a> for anyone wanting to use it.</p>
                         <p>If you like the site, please consider supporting us on Patreon by clicking the link below...
                         </p>
                         <img class="w-25 m-3" src="images/patreon_logo.png" alt=""><br>
-                        <a href="">Click to Support: Currently 650 supporters</a>
+                        <a onclick="displayNoneBlock('sorry-display')" href="#">Click to Support: Currently 650 supporters</a>
                     </div>
                     <div class="col-2">
                         <img class="w-100" src="images/meal-icon.png" alt="">
@@ -99,34 +102,11 @@
                     </div>
                 </article>
 
-                <!-- ========================= Popular Ingredients ======================= -->
+                <!-- ========================= Popular Category ======================= -->
                 <article class="mt-5 mb-5 border-top border-5 border-bottom border-info">
-                    <h1 class="text-center mt-3">Popular Ingredients</h1>
-                    <div id="popular-ingredients" class="row mt-5 mb-5">
-                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                            <div class="box-shadow-style">
-                                <img src="https://www.themealdb.com/images/ingredients/Chicken.png" alt="">
-                                <h3 class="text-center">Chicken</h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                            <div class="box-shadow-style">
-                                <img src="https://www.themealdb.com/images/ingredients/Salmon.png" alt="">
-                                <h3 class="text-center">Salmon</h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                            <div class="box-shadow-style">
-                                <img src="https://www.themealdb.com/images/ingredients/Beef.png" alt="">
-                                <h3 class="text-center">Beef</h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                            <div class="box-shadow-style">
-                                <img src="https://www.themealdb.com/images/ingredients/Pork.png" alt="">
-                                <h3 class="text-center">Pork</h3>
-                            </div>
-                        </div>
+                    <h1 class="text-center mt-3">Popular Category</h1>
+                    <div id="popular-category" class="row mt-5 mb-5">
+                        
                     </div>
                 </article>
 
@@ -138,34 +118,11 @@
                     </div>
                 </article>
 
-                <!-- ========================= Random Ingredients ======================= -->
+                <!-- ========================= Popular Ingredients ======================= -->
                 <article class="mt-5 mb-5 border-top border-5 border-bottom border-info">
-                    <h1 class="text-center mt-3">Random Ingredients</h1>
+                    <h1 class="text-center mt-3">Popular Ingredients</h1>
                     <div id="popular-ingredients" class="row mt-5 mb-5">
-                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                            <div class="box-shadow-style">
-                                <img src="https://www.themealdb.com/images/ingredients/Tarragon Leaves.png" alt="">
-                                <h3 class="text-center">Tarragon Leaves</h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                            <div class="box-shadow-style">
-                                <img src="https://www.themealdb.com/images/ingredients/Canola Oil.png" alt="">
-                                <h3 class="text-center">Canola Oil</h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                            <div class="box-shadow-style">
-                                <img src="https://www.themealdb.com/images/ingredients/Rice Vermicelli.png" alt="">
-                                <h3 class="text-center">Rice Vermicelli</h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 p-2">
-                            <div class="box-shadow-style">
-                                <img src="https://www.themealdb.com/images/ingredients/Whole Milk.png" alt="">
-                                <h3 class="text-center">Whole Milk</h3>
-                            </div>
-                        </div>
+                        
                     </div>
                 </article>
 
@@ -194,7 +151,6 @@
                         <img src="images/country/Mexican.png" alt="Mexican">
                         <img src="images/country/Moroccan.png" alt="Moroccan">
                         <img src="images/country/Norwegian.png" alt="Norwegian">
-                        <img src="images/country/Polish.png" alt="Polish">
                         <img src="images/country/Polish.png" alt="Polish">
                         <img src="images/country/Portuguese.png" alt="Portuguese">
                         <img src="images/country/Russian.png" alt="Russian">
@@ -343,9 +299,11 @@
             </div>
             <div class="col-md-4 text-center mt-3">
                 <ul>
-                    <a href="">About</a>
-                    <a href="">Faq</a>
-                    <a href="">Contact</a>
+                    <a href="#">About</a>
+                    <a href="#">Faq</a>
+                    <a href="#">Contact</a>
+                    <a class="nav-link" href="https://www.facebook.com/mehedysr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                    <a class="nav-link" href="https://www.linkedin.com/in/md-mehedy-hassan/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                 </ul>
             </div>
         </article>

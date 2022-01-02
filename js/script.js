@@ -62,6 +62,7 @@ function browseByName(e) {
 };
 
 function displayNoneBlock(displayId){
+    document.getElementById('sorry-display').style.display = 'none';
     document.getElementById('home-section-display').style.display = 'none';
     document.getElementById('api-section-display').style.display = 'none';
     document.getElementById('categories-display').style.display = 'none';
@@ -226,7 +227,8 @@ function allCategories(){
 };
 
 function showAllCategories(categories){
-    const categoriesDiv = document.getElementById('categories')
+    const categoriesDiv = document.getElementById('categories');
+    categoriesDiv.innerHTML = '';
     for (let i = 0; i < categories.length; i++) {
         const category = categories[i];
         console.log(category)
@@ -250,7 +252,8 @@ function allCountries(){
 }
 
 function showAllCountries(countries){
-    const countriesDiv = document.getElementById('countries')
+    const countriesDiv = document.getElementById('countries');
+    countriesDiv.innerHTML = '';
     for (let i = 0; i < countries.length; i++) {
         const country = countries[i];
         console.log(country)
@@ -274,7 +277,8 @@ function allIngredients(){
 }
 
 function showAllIngredients(ingredients){
-    const ingredientsDiv = document.getElementById('ingredients')
+    const ingredientsDiv = document.getElementById('ingredients');
+    ingredientsDiv.innerHTML ="";
     for (let i = 0; i < ingredients.length; i++) {
         const ingredient = ingredients[i];
         console.log(ingredient)
@@ -301,3 +305,68 @@ function categoryCountryIngredientToSearch(category) {
     getAPIData(categoryToSearchAPI, mealsSearching);
 };
 
+const popularCategoryArray =  [
+    {
+        img: "https://www.themealdb.com/images/ingredients/Chicken.png",
+        name: "Chicken"
+    },
+    {
+        img: "https://www.themealdb.com/images/ingredients/Lamb.png",
+        name: "Lamb"
+    },
+    {
+        img: "https://www.themealdb.com/images/ingredients/Beef.png",
+        name: "Beef"
+    },
+    {
+        img: "https://www.themealdb.com/images/ingredients/Pork.png",
+        name: "Pork"
+    }
+];
+
+const popularCategory = document.getElementById('popular-category');
+for (let i = 0; i < popularCategoryArray.length; i++) {
+    const element = popularCategoryArray[i];
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'p-2')
+    newDiv.innerHTML =`
+        <div onclick="categoryCountryIngredientToSearch('https://www.themealdb.com/api/json/v1/1/filter.php?c=${element.name}')" class="box-shadow-style">
+            <img src="${element.img}" alt="">
+            <h3 class="text-center">${element.name}</h3>
+        </div>
+    `
+    popularCategory.appendChild(newDiv);
+}
+
+const popularIngredientsArray =  [
+    {
+        img: "https://www.themealdb.com/images/ingredients/White Fish.png",
+        name: "White Fish"
+    },
+    {
+        img: "https://www.themealdb.com/images/ingredients/Salmon.png",
+        name: "Salmon"
+    },
+    {
+        img: "https://www.themealdb.com/images/ingredients/Fresh Basil.png",
+        name: "Fresh Basil"
+    },
+    {
+        img: "https://www.themealdb.com/images/ingredients/Tomatoes.png",
+        name: "Tomatoes"
+    }
+];
+
+const ingredientsCategory = document.getElementById('popular-ingredients');
+for (let i = 0; i < popularIngredientsArray.length; i++) {
+    const element = popularIngredientsArray[i];
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'p-2')
+    newDiv.innerHTML =`
+        <div onclick="categoryCountryIngredientToSearch('https://www.themealdb.com/api/json/v1/1/filter.php?i=${element.name}')" class="box-shadow-style">
+            <img src="${element.img}" alt="">
+            <h3 class="text-center">${element.name}</h3>
+        </div>
+    `
+    ingredientsCategory.appendChild(newDiv);
+}

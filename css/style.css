@@ -1,7 +1,13 @@
 body{
   font-family: 'Roboto', sans-serif;
-  background-color: rgb(226, 226, 226);
+  background-color: #e2e2e2;
 }
+
+.darkTheme{
+  background-color: #3a3a3a;
+  color: #e2e2e2
+}
+
 /* ******************** Common Style ******************* */
 .box-shadow-style, a, .alphabet-link span , .browse-country img{
   box-shadow: 1px 1px black, -1px -1px white;
@@ -9,6 +15,7 @@ body{
   margin: 5px;
   padding: 5px;
   cursor: pointer; 
+  color: rgb(0, 174, 255) !important;
 }
 .box-shadow-style:hover, a:hover, .alphabet-link span:hover, .browse-country img:hover {
   box-shadow: 1px 1px white, -1px -1px black;
@@ -32,7 +39,7 @@ img{
 /* ******************** home section ******************* */
 
 /* ******************** api section ******************* */
-#api-section-display{
+#api-section-display, #sorry-display{
   display: none;
 }
 #api-section article{
