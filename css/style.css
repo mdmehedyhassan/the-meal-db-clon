@@ -1,25 +1,26 @@
 body{
   font-family: 'Roboto', sans-serif;
-  background-color: #e2e2e2;
+  background-color: #11265c;
+  color: white;
 }
 
 .darkTheme{
-  background-color: #3a3a3a;
-  color: #e2e2e2
+  background-color: #ffffff;
+  color: #000000
 }
 
 /* ******************** Common Style ******************* */
 .box-shadow-style, a, .alphabet-link span , .browse-country img{
-  box-shadow: 1px 1px black, -1px -1px white;
+  box-shadow: 5px 5px 5px #05ff05, -5px -5px 5px #05ff05;
+  color: #05ff05 !important;
   border-radius: 15px;
   margin: 5px;
   padding: 5px;
   cursor: pointer; 
-  color: rgb(0, 174, 255) !important;
 }
 .box-shadow-style:hover, a:hover, .alphabet-link span:hover, .browse-country img:hover {
-  box-shadow: 1px 1px white, -1px -1px black;
-  color: rgb(255, 23, 23) !important;
+  box-shadow: 5px 5px 5px #ff3305, -5px -5px 5px #ff4805;
+  color: #ff3305 !important;
 }
 
 .box-shadow-style:active, a:active, .alphabet-link span:active , .browse-country img:active{
